@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gpx version="1.1" creator="GPS Visualizer https://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<trk>
+  <name>E1-E2 Calvillo</name>
+  <trkseg>
+    <trkpt lat="37.903601878" lon="-1.647719585"></trkpt>
+    <trkpt lat="37.904902679" lon="-1.647177865"></trkpt>
+    <trkpt lat="37.905674161" lon="-1.64598059"></trkpt>
+    <trkpt lat="37.90594979" lon="-1.644143013"></trkpt>
+    <trkpt lat="37.905929333" lon="-1.643980355"></trkpt>
+    <trkpt lat="37.905909029" lon="-1.643850594"></trkpt>
+    <trkpt lat="37.905997502" lon="-1.642317361"></trkpt>
+    <trkpt lat="37.906041573" lon="-1.642213894"></trkpt>
+    <trkpt lat="37.906154636" lon="-1.640792645"></trkpt>
+    <trkpt lat="37.906391003" lon="-1.639959398"></trkpt>
+    <trkpt lat="37.906907962" lon="-1.639036288"></trkpt>
+    <trkpt lat="37.908092071" lon="-1.637971819"></trkpt>
+    <trkpt lat="37.909232888" lon="-1.637195664"></trkpt>
+    <trkpt lat="37.910435629" lon="-1.636645396"></trkpt>
+    <trkpt lat="37.911965685" lon="-1.636218673"></trkpt>
+  </trkseg>
+</trk>
+</gpx>

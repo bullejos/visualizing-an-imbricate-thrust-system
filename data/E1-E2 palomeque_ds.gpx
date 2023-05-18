@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gpx version="1.1" creator="GPS Visualizer https://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<trk>
+  <name>E1-E2 Palomeque desplazado</name>
+  <trkseg>
+    <trkpt lat="37.8972879" lon="-1.641274029"></trkpt>
+    <trkpt lat="37.896695449" lon="-1.640713083"></trkpt>
+    <trkpt lat="37.896278059" lon="-1.640106491"></trkpt>
+    <trkpt lat="37.896242834" lon="-1.638993041"></trkpt>
+    <trkpt lat="37.896839268" lon="-1.637965772"></trkpt>
+    <trkpt lat="37.898014489" lon="-1.637934757"></trkpt>
+    <trkpt lat="37.898814532" lon="-1.638216001"></trkpt>
+    <trkpt lat="37.899717885" lon="-1.63833865"></trkpt>
+    <trkpt lat="37.899795109" lon="-1.638312588"></trkpt>
+  </trkseg>
+</trk>
+</gpx>

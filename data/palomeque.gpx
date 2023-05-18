@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gpx version="1.1" creator="GPS Visualizer https://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<trk>
+  <name>Palomeque thrust</name>
+  <trkseg>
+    <trkpt lat="37.901860573" lon="-1.645267935"></trkpt>
+    <trkpt lat="37.902722662" lon="-1.644851031"></trkpt>
+    <trkpt lat="37.903381743" lon="-1.64406971"></trkpt>
+    <trkpt lat="37.90391883" lon="-1.642932331"></trkpt>
+    <trkpt lat="37.904367227" lon="-1.641720694"></trkpt>
+    <trkpt lat="37.907037777" lon="-1.636002299"></trkpt>
+    <trkpt lat="37.911571384" lon="-1.628746757"></trkpt>
+    <trkpt lat="37.91363767" lon="-1.62380524"></trkpt>
+    <trkpt lat="37.914769729" lon="-1.621205324"></trkpt>
+    <trkpt lat="37.915243383" lon="-1.619412975"></trkpt>
+  </trkseg>
+</trk>
+</gpx>

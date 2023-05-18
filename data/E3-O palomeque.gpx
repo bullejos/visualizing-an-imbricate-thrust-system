@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gpx version="1.1" creator="GPS Visualizer https://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<trk>
+  <name>E3-O Palomeque</name>
+  <trkseg>
+    <trkpt lat="37.893018043" lon="-1.629259181"></trkpt>
+    <trkpt lat="37.894887089" lon="-1.628781824"></trkpt>
+    <trkpt lat="37.897441217" lon="-1.62977471"></trkpt>
+    <trkpt lat="37.899044697" lon="-1.629339138"></trkpt>
+    <trkpt lat="37.902334585" lon="-1.621023546"></trkpt>
+    <trkpt lat="37.906662154" lon="-1.614331587"></trkpt>
+    <trkpt lat="37.914456505" lon="-1.604975633"></trkpt>
+    <trkpt lat="37.917667901" lon="-1.601899572"></trkpt>
+    <trkpt lat="37.918554776" lon="-1.600232956"></trkpt>
+  </trkseg>
+</trk>
+</gpx>

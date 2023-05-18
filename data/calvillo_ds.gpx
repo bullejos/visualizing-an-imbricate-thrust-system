@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gpx version="1.1" creator="GPS Visualizer https://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<trk>
+  <name>Calvillo desplazado</name>
+  <trkseg>
+    <trkpt lat="37.902722701" lon="-1.648809328"></trkpt>
+    <trkpt lat="37.902537091" lon="-1.649398033"></trkpt>
+    <trkpt lat="37.901710751" lon="-1.650435007"></trkpt>
+    <trkpt lat="37.901318623" lon="-1.650924358"></trkpt>
+    <trkpt lat="37.900989156" lon="-1.651085692"></trkpt>
+  </trkseg>
+</trk>
+</gpx>

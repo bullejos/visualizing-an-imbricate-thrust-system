@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gpx version="1.1" creator="GPS Visualizer https://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<trk>
+  <name>E1-E2 Calvillo desplazado modificado</name>
+  <trkseg>
+    <trkpt lat="37.898781437" lon="-1.649082482"></trkpt>
+    <trkpt lat="37.89850478" lon="-1.648541269"></trkpt>
+    <trkpt lat="37.898502709" lon="-1.64852457"></trkpt>
+    <trkpt lat="37.898530999" lon="-1.648116661"></trkpt>
+    <trkpt lat="37.898533803" lon="-1.6480923"></trkpt>
+    <trkpt lat="37.898534921" lon="-1.648087611"></trkpt>
+    <trkpt lat="37.898570353" lon="-1.647598018"></trkpt>
+    <trkpt lat="37.898563734" lon="-1.647554529"></trkpt>
+    <trkpt lat="37.898491267" lon="-1.64718937"></trkpt>
+    <trkpt lat="37.898482546" lon="-1.647176674"></trkpt>
+    <trkpt lat="37.898474516" lon="-1.647159156"></trkpt>
+    <trkpt lat="37.898311649" lon="-1.646951936"></trkpt>
+    <trkpt lat="37.898295328" lon="-1.646947322"></trkpt>
+    <trkpt lat="37.898278867" lon="-1.646942658"></trkpt>
+    <trkpt lat="37.898272296" lon="-1.646940796"></trkpt>
+    <trkpt lat="37.897890205" lon="-1.646678493"></trkpt>
+    <trkpt lat="37.897635993" lon="-1.646378442"></trkpt>
+    <trkpt lat="37.897497673" lon="-1.645674202"></trkpt>
+  </trkseg>
+</trk>
+</gpx>

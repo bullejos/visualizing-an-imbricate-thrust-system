@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gpx version="1.1" creator="GPS Visualizer https://www.gpsvisualizer.com/" xmlns="http://www.topografix.com/GPX/1/1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<trk>
+  <name>P-E Palomeque</name>
+  <trkseg>
+    <trkpt lat="37.901757091" lon="-1.644961209"></trkpt>
+    <trkpt lat="37.903161143" lon="-1.64324069"></trkpt>
+    <trkpt lat="37.904072101" lon="-1.641215134"></trkpt>
+    <trkpt lat="37.905183711" lon="-1.637577578"></trkpt>
+    <trkpt lat="37.906289119" lon="-1.635345731"></trkpt>
+    <trkpt lat="37.907455976" lon="-1.632761641"></trkpt>
+    <trkpt lat="37.908519786" lon="-1.63099912"></trkpt>
+    <trkpt lat="37.910283067" lon="-1.629338657"></trkpt>
+    <trkpt lat="37.911245379" lon="-1.628057055"></trkpt>
+    <trkpt lat="37.912224795" lon="-1.625335825"></trkpt>
+    <trkpt lat="37.913542764" lon="-1.622989961"></trkpt>
+    <trkpt lat="37.914027712" lon="-1.62201399"></trkpt>
+    <trkpt lat="37.914768422" lon="-1.621033854"></trkpt>
+  </trkseg>
+</trk>
+</gpx>
