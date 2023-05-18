@@ -7,5 +7,16 @@ In this repository we introduce a Python application for visualizing an imbricat
 
 ### Download the code
 
-The code can be found in the repository, it can be downloaded as ZIP by clicking in the green Code button. The necessary file is the notebook visualizing_an_imbricate_thrust_system.ipynb. In this notebook we use libraries and packages like: plotlib, matplotli, pandas, numpy, sympy, etc. that are included at the begining. But we also use the file bezier.py from the repository https://github.com/torresjrjr/Bezier.py.
+The code can be found in the repository, it can be downloaded as ZIP by clicking in the green Code button. The necessary file is the notebook `visualizing_an_imbricate_thrust_system.ipynb`. In this notebook we use libraries and packages like: plotlib, matplotli, pandas, numpy, sympy, etc. that are included at the begining. But we also use the file bezier.py from the repository https://github.com/torresjrjr/Bezier.py.
+
+### How to run the notebook
+
+You can run the notebook in [Jupyter-Notebook](https://jupyter.org/) or [Visual Studio Code](https://code.visualstudio.com/), you also need a Python kernel installed in your computer. We recommend installing [Anaconda](https://www.anaconda.com/) and launching Jupyter by typing `jupyter-notebook` in the Anaconda Prompt.
+
+To successfully run the notebook, you need to locate it in the same folder as the `data` directory and the file `bezier.py`. In order to do this, you may just extract the ZIP file with the whole repository. Then, launch Jupyter Notebook and select the notebook  `visualizing_an_imbricate_thrust_system.ipynb`. To run a cell, you can just click in the run button (next to the cell number) or click on it and press Ctrl+Enter. You're now ready to go!
+
+
+#### Authors:
+
+Manuel Bullejos, Manuel Martín-Martín
 
