@@ -7,5 +7,5 @@ In this repository we introduce a Python application for visualizing an imbricat
 
 ### Download the code
 
-The code can be found in the repository, it can be downloaded as ZIP by clicking in the geen Code button. The necessary files are the notebook knn.ipynb and the auxiliar module functions.py.
+The code can be found in the repository, it can be downloaded as ZIP by clicking in the green Code button. The necessary file is the notebook visualizing_an_imbricate_thrust_system.ipynb. In this notebook we use libraries and packages like: plotlib, matplotli, pandas, numpy, sympy, etc. that are included at the begining. But we also use the file bezier.py from the repository https://github.com/torresjrjr/Bezier.py.
 
