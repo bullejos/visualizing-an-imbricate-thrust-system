@@ -7,8 +7,7 @@ In this repository we introduce a Python application for visualizing an imbricat
 
 ### html files
 
-The html files hosted in the repository are too large to open here, so download and open them locally on your computer.
-The file `visualizing an imbricate thrust system.html` is an html translation of the notebook `visualizing an imbricate thrust system.html`.ipynb`. We include this file here in case you want to see the process without running the code.
+Some of the html files hosted in the repository are too large to open here, so download and open them locally on your computer.
 
 
 ### Download the code
