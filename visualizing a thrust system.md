@@ -256,7 +256,7 @@ contacts=[contact_dat(palomeque_ds[0],palomeque_ds[1],palomeque_ds[2],30,
                         "lines",'Thrusts','black','contacts',True,None)
           ]+[contact_dat(x[0],x[1],x[2],30,"lines",x[3],'black','contacts',False,None) for x in cont[1:]]
 
-cabs=[contact_dat(E12cal[0],E12cal[1],E12cal[2],30,"lines",'Stratigraphic contacts','black',
+cabs=[contact_dat(E12cal[0],E12cal[1],E12cal[2],30,"lines",'Stratigraphic contacts and units','black',
                             'cabalgamientos',True,'dot')
               ]+[contact_dat(x[0],x[1],x[2],30,"lines",x[3],'black','cabalgamientos',False,'dot') for x in cab[1:]]
 
@@ -902,7 +902,7 @@ fig.update_layout( title="3D Palomeque sheets geological map",
               
 
 fig.show()
-go_offline.plot(fig,filename=FIGURESDIR+'3D_Palomeque_sheets_geological_map.html',validate=True, auto_open=False)
+go_offline.plot(fig,filename=FIGURESDIR+'3D_Palomeque_map.html',validate=True, auto_open=False)
 
 ```
 
@@ -1064,11 +1064,11 @@ def plane_3d(A0,A1,deep,nam,gr,t):
 
 
 ```python
-p1=plane_3d(points[0][0],points[1][0],100,'sections','sections',True)
-p2=plane_3d(points[2][0],points[3][0],100,'section '+points[2][1]+points[3][1],'B',True)
-p3=plane_3d(points[4][0],points[5][0],100,'section '+points[4][1]+points[5][1],'C',True)
-p4=plane_3d(points[6][0],points[7][0],100,'section '+points[6][1]+points[7][1],'D',True)
-p5=plane_3d(points[8][0],points[9][0],100,'section '+points[8][1]+points[9][1],'E',True)
+p1=plane_3d(points[0][0],points[1][0],100,'Section A','A',True)
+p2=plane_3d(points[2][0],points[3][0],100,'Section B','B',True)
+p3=plane_3d(points[4][0],points[5][0],100,'Section C','C',True)
+p4=plane_3d(points[6][0],points[7][0],100,'Section D','D',True)
+p5=plane_3d(points[8][0],points[9][0],100,'Section E','E',True)
 
 data_planes=[p1,p2,p3,p4,p5]
 ```
@@ -1455,25 +1455,34 @@ cot_E=[min(Etopox),max(Etopox),min(Etopoelv),max(Etopoelv)]
 arE=600/(Etopot[0]-Etopot[-1])
 ```
 
-### Curvas de Bezier
+### Bezier curves
 
-https://github.com/torresjrjr/Bezier.py
+The Bezier module we use for this section is taken from https://github.com/torresjrjr/Bezier.py
 
 
 ```python
 from Bezier import Bezier
+```
 
+To define a Bezier curve we need some control points. We need Bezier curves contained in a particular plane, so the control point list must be contained in that plane.
+
+In our case, we will obtain the control points from an initial point `P` and an end point `Q`. Along with a direction (the direction of the line determined by `P` and `Q`), a list of `L_int` intervals, and a list of `L_heights`. If the endpoint `Q` is not to be given (we take `Q` equal to the empty list) the last checkpoint is computed from the last interval in `L_int` and the last height in `L_heights`
+
+The `bz` function computes the Bezier curves under the conditions we require.
+
+
+```python
 t_points = np.arange(0, 1, 0.01) # Creates an iterable list from 0 to 1.
 
-def bz(punto, direc, lista_intervalos,lista_alturas,punto_fin):
-    if punto_fin==[]:
-        c=[punto]+[[punto[0]+direc[0]*lista_intervalos[i],
-                punto[1]+direc[1]*lista_intervalos[i],
-                lista_alturas[i]] for i in range(len(lista_intervalos))]
+def bz(P, direc, L_int,L_heights,Q):
+    if Q==[]:
+        c=[P]+[[P[0]+direc[0]*L_int[i],
+                P[1]+direc[1]*L_int[i],
+                L_heights[i]] for i in range(len(L_int))]
     else:
-        c=c=[punto]+[[punto[0]+direc[0]*lista_intervalos[i],
-                punto[1]+direc[1]*lista_intervalos[i],
-                lista_alturas[i]] for i in range(len(lista_intervalos))]+[punto_fin]
+        c=c=[P]+[[P[0]+direc[0]*L_int[i],
+                P[1]+direc[1]*L_int[i],
+                L_heights[i]] for i in range(len(L_int))]+[Q]
     xc=[x[0] for x in c]
     yc=[x[1] for x in c]
     zc=[x[2] for x in c]
@@ -1976,17 +1985,17 @@ plt.show()
 
 ```python
 pal_E=bz(int_Pal_th_E,d5n,[100,200,450],[500,400,300],[])
-om_E=bz([pal_E[0][22],pal_E[1][22],pal_E[2][22]],d3n,
+
+om_E=bz([pal_E[0][34],pal_E[1][34],pal_E[2][34]],d3n,
         [-150,-200,-900],[300,400,500],[])
 
-
-cp_En=bz([pal_E[0][22],pal_E[1][22],pal_E[2][22]],d5n,
+cp_E=bz([pal_E[0][22],pal_E[1][22],pal_E[2][22]],d5n,
         [300,400,550,700],[600,450,350,300],[])
 
-pep_En=bz(int_pep_E,d5n,
+pep_E=bz(int_pep_E,d5n,
          [250,270,430,600,800,1000],[680,670,560,490,350,300],[])
 
-e1e2_En=bz(int_e12p_E,d5n,
+e1e2_E=bz(int_e12p_E,d5n,
           [260,260,300,500,700,800,1000],[600,580,500,440,400,320,360],[])
 
 e2e3_E=bz(int_e23p_E,d5n,[150,100,400,900],[500,560,410,500],[])
@@ -1996,10 +2005,8 @@ e3eO_E=bz(int_e3op_E,d5n,[250,270],[500,540],[])
 
 
 ```python
-# este es el último cambio y es el que vale
-
-om_En=bz([pal_E[0][34],pal_E[1][34],pal_E[2][34]],d3n,
-        [-150,-200,-900],[300,400,500],[])
+SE_list=[om_E,pal_E,cp_E,pep_E,e1e2_E,e2e3_E,e3eO_E]
+SE_colors=['yellow','black','green','darkviolet','brown','pink']
 ```
 
 
@@ -2012,14 +2019,13 @@ plt.plot(Etopot,Etopoelv,color='black',linewidth=3)
 
 ax.plot(pal_E[4], pal_E[2], color='black', alpha=1.00)
 ax.plot(om_E[4], om_E[2], color='yellow', alpha=1.00)
-ax.plot(om_En[4], om_En[2], color='blue', alpha=1.00)
 
 
-ax.plot(cp_En[4], cp_En[2], color='green', alpha=1.00)
+ax.plot(cp_E[4], cp_E[2], color='green', alpha=1.00)
 
-ax.plot(pep_En[4], pep_En[2], color='darkviolet', alpha=1.00)
+ax.plot(pep_E[4], pep_E[2], color='darkviolet', alpha=1.00)
 
-ax.plot(e1e2_En[4], e1e2_En[2], color='brown', alpha=1.00)
+ax.plot(e1e2_E[4], e1e2_E[2], color='brown', alpha=1.00)
 
 ax.plot(e2e3_E[4], e2e3_E[2], color='pink', alpha=1.00)
 ax.plot(e3eO_E[4], e3eO_E[2], color='r', alpha=1.00)
@@ -2075,6 +2081,366 @@ plt.title('E-E$^\prime$ section')
 plt.savefig(FIGURESDIR+'sectionE.png',facecolor='white',bbox_inches='tight')
 
 plt.show()
+```
+
+# The complete 3D-model
+
+Let us now integrate the seccitions in the previous 3D figure.
+
+To shorten computing time we have saved the data in the Bezier curves to cvs file, next function `get_cvs` reads the cvs files and prepare the data to be used in the definition of the 3D figure.
+
+
+```python
+def get_csv(lista):
+    csv,nombre,color=lista
+    c1=pd.read_csv(DATADIR+csv+'.csv')
+    c2=c1[['x','y','z']].to_numpy()
+    cx=[x[0] for x in c2]
+    cy=[x[1] for x in c2]
+    cz=[x[2] for x in c2]
+    return [[cx,cy,cz],nombre,color]
+
+```
+
+We now define lists with the Bezier curves in each section.
+
+
+```python
+lA=[['calds_A','Calvillo_ds','black'],
+            ['cpds_A','cpds_A','green'],
+            ['e1e2_A','e1e2_A','brown'],
+            ['om_A','om_A','yellow'],
+            ['peds_A','peds_A','darkviolet']
+           ]
+
+lB=[['cal_B','cal_B','black'],
+    ['cp1_B','cp1_B','green'],['cp2_B','cp2_B','green'],['cp3_B','cp3_B','green'],['cp4_B','cp4_B','green'],
+    ['e1e21_B','e1e21_B','brown'],['e1e22_B','e1e22_B','brown'],['e1e23_B','e1e23_B','brown'],
+    ['om_B','om_B','yellow'],
+    ['pal_B','pal_B','black'],['pal_ds_B','pal_ds_B','black'],
+    ['pe1_B','pe1_B','darkviolet'],['pe2_B','pe2_B','darkviolet'],
+    ['falla_B','falla_B','black']]
+
+
+lC=[['cal_C','cal_C','black'],
+    ['cp1_C','cp1_C','green'],['cp2_C','cp2_C','green'],
+    ['e1e21_C','e1e21_C','brown'],['e1e22_C','e1e22_C','brown'],
+    ['e2e3_C','e2e3_C','pink'],
+    ['om_C','om_C','yellow'],
+    ['pal_C','pal_C','black'],
+    ['pe1_C','pe1_C','darkviolet'],['pe2_C','pe2_C','darkviolet']]
+
+
+lD=[['cal_D','cal_D','black'],
+    ['pal_D','pal_D','black'],
+    ['om_D','om_D','yellow'],
+    ['cp1_D','cp1_D','green'],
+    ['pe0_D','pe0_D','blue'],
+    ['pe1_D','pe1_D','blue'],
+    ['e1e20_D','e1e20_D','brown'],
+    ['e1e21_D','e1e21_D','brown'],
+    ['e2e3_D','e2e3_D','pink'],
+    ['e3e0_D','e3e0_D','red'],
+    ]
+    
+lE=[['cp_E','cp_E','green'],
+    ['e1e2_E','e1e2_E','brown'],
+    ['e2e3_E','e2e3_E','pink'],
+    ['e3eO_E','e3eO_D','red'],
+    ['om_D','om_D','yellow'],
+    ['pal_E','pal_E','black'],
+    ['pep_E','pep_E','darkviolet']]
+    
+```
+
+And we use the above list to get the data back.
+
+
+```python
+corte_A=[get_csv(x) for x in lA]
+corte_B=[get_csv(x) for x in lB]
+corte_C=[get_csv(x) for x in lC]
+corte_D=[get_csv(x) for x in lD]
+corte_E=[get_csv(x) for x in lE]
+
+```
+
+Now we adapt the data to the required dimensions
+
+
+```python
+corte_A[3][0]=[corte_A[3][0][0][:76],corte_A[3][0][1][:76],corte_A[3][0][2][:76]]
+corte_A[2][0]=[corte_A[2][0][0][25:71],corte_A[2][0][1][25:71],corte_A[2][0][2][25:71]]
+corte_A[1][0]=[corte_A[1][0][0][:76],corte_A[1][0][1][:76],corte_A[1][0][2][:76]]
+corte_A[4][0]=[corte_A[4][0][0][:78],corte_A[4][0][1][:78],corte_A[4][0][2][:78]]
+
+corte_B[4][0]=[corte_B[4][0][0][:60],corte_B[4][0][1][:60],corte_B[4][0][2][:60]]
+corte_B[7][0]=[corte_B[7][0][0][:60],corte_B[7][0][1][:60],corte_B[7][0][2][:60]]
+
+corte_C[4][0]=[corte_C[4][0][0][8:68],corte_C[4][0][1][8:68],corte_C[4][0][2][8:68]]
+corte_C[5][0]=[corte_C[5][0][0][:57],corte_C[5][0][1][:57],corte_C[5][0][2][:57]]
+corte_C[9][0]=[corte_C[9][0][0][:65],corte_C[9][0][1][:65],corte_C[9][0][2][:65]]
+
+corte_D[0][0]=[corte_D[0][0][0][:96],corte_D[0][0][1][:96],corte_D[0][0][2][:96]]
+corte_D[5][0]=[corte_D[5][0][0][:96],corte_D[5][0][1][:96],corte_D[5][0][2][:96]]
+corte_D[7][0]=[corte_D[7][0][0][:88],corte_D[7][0][1][:88],corte_D[7][0][2][:88]]
+corte_D[8][0]=[corte_D[8][0][0][:83],corte_D[8][0][1][:83],corte_D[8][0][2][:83]]
+corte_D[9][0]=[corte_D[9][0][0][10:64],corte_D[9][0][1][10:64],corte_D[9][0][2][10:64]]
+
+corte_E[4][0]=[corte_E[4][0][0][:93],corte_E[4][0][1][:93],corte_E[4][0][2][:93]]
+corte_E[6][0]=[corte_E[6][0][0][3:],corte_E[6][0][1][3:],corte_E[6][0][2][3:]]
+corte_E[1][0]=[corte_E[1][0][0][:99],corte_E[1][0][1][:99],corte_E[1][0][2][:99]]
+corte_E[2][0]=[corte_E[2][0][0][:79],corte_E[2][0][1][:79],corte_E[2][0][2][:79]]
+corte_E[3][0]=[corte_E[3][0][0][:57],corte_E[3][0][1][:57],corte_E[3][0][2][:57]]
+
+```
+
+The function `plane_data` uses the plot function `Scatter3d` to produce the data needed in the 3D model
+
+
+```python
+def plane_data(lista,grupo):
+    return [go.Scatter3d(x=x[0][0], 
+                         y=x[0][1], 
+                         z=x[0][2],
+                         mode ='lines',
+                         #name=name,
+                         legendgroup=grupo,
+                         showlegend=False,
+                         line=dict(color=x[2],width=3),
+                         marker=dict(color=x[2],size=1)
+                          ) for x in lista]
+
+```
+
+
+```python
+
+c_A=plane_data(corte_A,'A')+[p1]
+
+c_B=plane_data(corte_B,'B')+[p2]
+
+c_C=plane_data(corte_C,'C')+[p3]
+
+c_D=plane_data(corte_D,'D')+[p4]
+
+c_E=plane_data(corte_E,'E')+[p5]
+
+sections=c_A+c_B+c_C+c_D+c_E
+```
+
+
+```python
+fig=go.Figure(contacts+cabs+faults+tcont+sections+sections_dat)
+
+# topography
+
+fig.add_trace(go.Surface(  x=topo_linear[3],y=topo_linear[4],z=topo_linear[5],
+                           colorscale='YlGn',
+                           opacity = 0.8,
+                           name='Topography',
+                           legendgroup='topo',
+                           showlegend=True,
+                           showscale=False))
+fig.add_trace(go.Surface(  x=topo_linear[3],y=topo_linear[4],z=topo_linear[5],
+                           colorscale='gray',
+                           opacity = 0.3,
+                           name='Topo',
+                           legendgroup='topo',
+                           showlegend=False,
+                           showscale=False))
+
+# texts
+
+trace = go.Scatter3d(
+                   x=namesx, y=namesy, z=namesz,
+                   text=namestxt,
+                   name='Heights',
+                   mode="text",
+                   textfont=dict(color=["black","black"],size=13),
+                   hoverinfo="skip")
+
+fig.add_trace(trace)
+
+trace2 = go.Scatter3d(
+                   x=nnx, y=nny, z=nnz,
+                   text=nntxt,
+                   name='Stratigraphic levels',
+                   mode="text",
+                   legendgroup='cabalgamientos',
+                   showlegend=False,
+                   textfont=dict(color='black',size=18),
+                   hoverinfo="skip")
+
+fig.add_trace(trace2)
+
+trace1 = go.Scatter3d(
+                   x=nx, y=ny, z=nz,
+                   text=ntxt,
+                   name='Sections',
+                   mode="text",
+                   legendgroup='cortes',
+                   showlegend=False,
+                   textfont=dict(color="orange",size=18),
+                   hoverinfo="skip")
+
+fig.add_trace(trace1)
+ 
+# geological symbos for faults
+
+fig.add_trace(go.Scatter3d(x=f1[0],
+                        y=f1[1],
+                        z=f1[2],
+                       mode ='lines',
+                       name='Sections',
+                      legendgroup='faults',
+                      showlegend=False,
+                      line=dict(color='black',
+                      width=5)
+                       ))
+fig.add_trace(go.Scatter3d(x=f2[0],
+                        y=f2[1],
+                        z=f2[2],
+                       mode ='lines',
+                       name='Sections',
+                      legendgroup='faults',
+                      showlegend=False,
+                      line=dict(color='black',
+                      width=5)
+                       ))
+
+# geological symbos for thrusts
+
+fig.add_trace(go.Scatter3d(x=[pal_B[0][55],pal_B[0][50],pal_B[0][65]],
+                        y=[pal_B[1][55],pal_B[1][50],pal_B[1][65]],
+                        z=[pal_B[2][55]+50,pal_B[2][50]+30,pal_B[2][65]+30],
+                       mode ='lines',
+                       name='Sections',
+                      legendgroup='B',
+                      showlegend=False,
+                      line=dict(color='black',
+                      width=5)
+                       ))
+fig.add_trace(go.Scatter3d(x=[cal_B[0][55],cal_B[0][50],cal_B[0][65]],
+                        y=[cal_B[1][55],cal_B[1][50],cal_B[1][65]],
+                        z=[cal_B[2][55]+50,cal_B[2][50]+30,cal_B[2][65]+30],
+                       mode ='lines',
+                       name='Sections',
+                      legendgroup='B',
+                      showlegend=False,
+                      line=dict(color='black',
+                      width=5)
+                       ))
+
+
+fig.add_trace(go.Scatter3d(x=[pal_C[0][55],pal_C[0][50],pal_C[0][65]],
+                        y=[pal_C[1][55],pal_C[1][50],pal_C[1][65]],
+                        z=[pal_C[2][55]+50,pal_C[2][50]+30,pal_C[2][65]+30],
+                       mode ='lines',
+                       name='Sections',
+                      legendgroup='C',
+                      showlegend=False,
+                      line=dict(color='black',
+                      width=5)
+                       ))
+
+fig.add_trace(go.Scatter3d(x=[cal_C[0][55],cal_C[0][50],cal_C[0][65]],
+                        y=[cal_C[1][55],cal_C[1][50],cal_C[1][65]],
+                        z=[cal_C[2][55]+50,cal_C[2][50]+30,cal_C[2][65]+30],
+                       mode ='lines',
+                       name='Sections',
+                      legendgroup='C',
+                      showlegend=False,
+                      line=dict(color='black',
+                      width=5)
+                       ))
+
+fig.add_trace(go.Scatter3d(x=[pal_D[0][55],pal_D[0][50],pal_D[0][65]],
+                        y=[pal_D[1][55],pal_D[1][50],pal_D[1][65]],
+                        z=[pal_D[2][55]+50,pal_D[2][50]+30,pal_D[2][65]+30],
+                       mode ='lines',
+                       name='Sections',
+                      legendgroup='D',
+                      showlegend=False,
+                      line=dict(color='black',
+                      width=5)
+                       ))
+
+fig.add_trace(go.Scatter3d(x=[pal_E[0][55],pal_E[0][50],pal_E[0][65]],
+                        y=[pal_E[1][55],pal_E[1][50],pal_E[1][65]],
+                        z=[pal_E[2][55]+50,pal_E[2][50]+30,pal_E[2][65]+30],
+                       mode ='lines',
+                       name='Sections',
+                      legendgroup='E',
+                      showlegend=False,
+                      line=dict(color='black',
+                      width=5)
+                       ))
+
+fig.add_trace(go.Scatter3d(x=[pal_ds_B[0][55],pal_ds_B[0][50],pal_ds_B[0][65]],
+                        y=[pal_ds_B[1][55],pal_ds_B[1][50],pal_ds_B[1][65]],
+                        z=[pal_ds_B[2][55]+50,pal_ds_B[2][50]+30,pal_ds_B[2][65]+30],
+                       mode ='lines',
+                       name='Sections',
+                      legendgroup='B',
+                      showlegend=False,
+                      line=dict(color='black',
+                      width=5)
+                       ))
+fig.add_trace(go.Scatter3d(x=[calds_A[0][55],calds_A[0][50],calds_A[0][65]],
+                        y=[calds_A[1][55],calds_A[1][50],calds_A[1][65]],
+                        z=[calds_A[2][55]+50,calds_A[2][50]+30,calds_A[2][65]+30],
+                       mode ='lines',
+                       name='Sections',
+                      legendgroup='A',
+                      showlegend=False,
+                      line=dict(color='black',
+                      width=5)
+                       ))
+
+# figure layout
+
+camera = dict(up=dict(x=0, y=0, z=1),
+              center=dict(x=0, y=0, z=0),
+               eye=dict(x=0, y=-1, z=2) )
+
+fig.update_layout( title="3D Palomeque sheets geological map with vertical cross-sections",
+                  #paper_bgcolor = 'black',
+                 scene = dict(
+                     xaxis=dict(title='UTM_X', 
+                                tickfont = dict(size = 10,color = 'black'),
+                                title_font_size=10,
+                                titlefont_color='black', 
+                                range=[cotasxy[0],cotasxy[1]],
+                                backgroundcolor='white',
+                                color='black',
+                                gridcolor='gray'),
+                     yaxis=dict(title='UTM_Y',
+                                tickfont = dict(size = 10,color = 'black'),
+                                title_font_size=10,
+                                titlefont_color='black', 
+                                range=[cotasxy[2],cotasxy[3]],  
+                                backgroundcolor='white',
+                                color='black',
+                                gridcolor='gray'),
+                      zaxis=dict(nticks=4,
+                                tickfont = dict(size = 10,color = 'black'),
+                                title='Elevation', 
+                                title_font_size=10,
+                                titlefont_color='black', 
+                                range=[300,1500],
+                                backgroundcolor='white',
+                                color='black', 
+                                gridcolor='gray'),
+                     aspectratio=dict(x=2, y=1.8, z=0.7)),
+                     #aspectmode='data'),
+                     scene_camera= camera
+                 ) 
+              
+
+fig.show()
+go_offline.plot(fig,filename=FIGURESDIR+'3D_Palomeque_map_sections.html',validate=True, auto_open=False)
+
 ```
 
 
